@@ -1,10 +1,10 @@
 #include <Servo.h>
 
-Servo servo_1; // servo controller (multiple can exist)
+Servo servo_1; 
 
-int trig = 4; // trig pin for HC-SR04
-int echo = 5; // echo pin for HC-SR04
-int servo_pin = 3; // PWM pin for servo control
+int trig = 4; 
+int echo = 5; 
+int servo_pin = 3; 
 
 int pos = 0;    // servo starting position
 float duration,distance;
@@ -19,14 +19,14 @@ void setup()  {
 
 
 void loop() {
-for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+for (pos = 0; pos <= 360; pos += 1) { // goes from 0 degrees to 360 degrees
     // in steps of 1 degree
     servo_1.write(pos);              // tell servo to go to position in variable 'pos'
     delay(45); // delay to allow the servo to reach the desired position
     dist_calc(pos);
   }
  
-  for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+  for (pos = 360; pos >= 0; pos -= 1) { // goes from 360 degrees to 0 degrees
     servo_1.write(pos);              // tell servo to go to position in variable 'pos'
     delay(45);
     dist_calc(pos);
@@ -44,7 +44,7 @@ float dist_calc(int pos){
   duration = pulseIn(echo,HIGH); // duration for pulse to reach detector (in microseconds)
   distance = 100.0*(343.0*(duration/2.0))/1000000.0; // 100.0*(speed of sound*duration/2)/microsec conversion
  
-  Serial.print(pos); // position of servo motor
-  Serial.print(","); // comma separate variables
-  Serial.println(distance); // print distance in cm
+  Serial.print("pos" , pos ); // position of servo motor
+  Serial.print(" , "); // comma separate variables
+  Serial.println("distance is : " , distance); // print distance in cm
 }
