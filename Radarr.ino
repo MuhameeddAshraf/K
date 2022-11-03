@@ -19,14 +19,14 @@ void setup()  {
 
 
 void loop() {
-for (pos = 0; pos <= 360; pos += 1) { // goes from 0 degrees to 360 degrees
+for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 360 degrees
     // in steps of 1 degree
     servo_1.write(pos);              // tell servo to go to position in variable 'pos'
     delay(45); // delay to allow the servo to reach the desired position
     dist_calc(pos);
   }
  
-  for (pos = 360; pos >= 0; pos -= 1) { // goes from 360 degrees to 0 degrees
+  for (pos = 180; pos >= 0; pos -= 1) { // goes from 360 degrees to 0 degrees
     servo_1.write(pos);              // tell servo to go to position in variable 'pos'
     delay(45);
     dist_calc(pos);
@@ -44,7 +44,7 @@ float dist_calc(int pos){
   duration = pulseIn(echo,HIGH); // duration for pulse to reach detector (in microseconds)
   distance = 100.0*(343.0*(duration/2.0))/1000000.0; // 100.0*(speed of sound*duration/2)/microsec conversion
  
-  Serial.print("pos" , pos ); // position of servo motor
+  Serial.print(pos); // position of servo motor
   Serial.print(" , "); // comma separate variables
-  Serial.println("distance is : " , distance); // print distance in cm
+  Serial.println( distance); // print distance in cm
 }
