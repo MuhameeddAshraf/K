@@ -44,7 +44,9 @@ float dist_calc(int pos){
   duration = pulseIn(echo,HIGH); // duration for pulse to reach detector (in microseconds)
   distance = 100.0*(343.0*(duration/2.0))/1000000.0; // 100.0*(speed of sound*duration/2)/microsec conversion
  
+  serial.print("pos is : ");
   Serial.print(pos); // position of servo motor
-  Serial.print(" , "); // comma separate variables
-  Serial.println( distance); // print distance in cm
+  Serial.print(" , ");// comma separate variables
+  Serial.print("distance is : ")
+  Serial.println(distance); // print distance in cm
 }
